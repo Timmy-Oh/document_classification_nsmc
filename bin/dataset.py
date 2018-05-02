@@ -46,22 +46,6 @@ class MovieReviewDataset():
 #             self.labels = [np.float32(x) for x in f.readlines()]
 
 def preprocess(data: list, max_length: int):
-#     def text_norm(sent):
-# #         sent = re.sub('[\,\<\>\(\)\+\-\=\&\@\#\$]', '', sent)
-#         sent = re.sub('\.{2,}', '..', sent)
-#         sent = re.sub('\~+', '~', sent)
-#         sent = re.sub('\!+', '!', sent)
-#         sent = re.sub('\?+', '?', sent)
-#         sent = re.sub('ㅋ{1,}|ㅎ{1,}', 'ㅋ', sent)
-#         sent = re.sub('ㅜ{1,}|ㅠ{1,}|ㅠㅜ|ㅜㅠ\ㅡㅜ\ㅜㅡ\ㅡㅠ\ㅠㅡ', 'ㅠㅠ', sent)
-#         return sent
-    
-    # vectorized_data = [decompose_str_as_one_hot(text_norm(datum), warning=False) for datum in data]
-    # for i, datum in enumerate(data):
-        # try:
-            # decompose_str_as_one_hot(datum, warning=False)
-        # except:
-            # print(i, datum)
     vectorized_data = [decompose_str_as_one_hot(datum, warning=False) for datum in data]
     zero_padding = np.zeros((len(data), max_length), dtype=np.int32)
     for idx, seq in enumerate(vectorized_data):
